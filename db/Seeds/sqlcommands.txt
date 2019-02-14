@@ -15,3 +15,8 @@ alter table < tablename>
 alter column<column name>
 set data type<data type> 
 
+ALTER DATA TYPE IN A COLUMN 
+alter table <tablename>
+alter <column name> 
+set data type <data type>; 
+
