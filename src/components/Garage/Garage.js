@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class Garage extends Component {
     constructor(props){
@@ -14,7 +15,10 @@ class Garage extends Component {
     //end of methods
     render(){
         return(
-            <div>User Garage component</div>
+            <div>
+                User Garage component
+                <Link to='/parts' >Browse Parts</Link>
+            </div>
         )
     }
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Login from './components/Login/Login';
-import Garage from './components/Garage/Garage';
-import Navbar from './components/Navbar/Navbar';
-import Header from './components/Header/Header';
+import { HashRouter } from 'react-router-dom'
+import routes from './routes'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
 
 
 import './App.css';
@@ -13,8 +13,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Navbar />
-        <Login />
-        <Garage />
+        <HashRouter>{routes}</HashRouter>
       </div>
     );
   }
