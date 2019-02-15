@@ -11,7 +11,6 @@ create table parts (
     image varchar(200)
 );
 
--- []; references the vehicle_id in vehicle table 
 insert into parts (parts_id, part_name, price, image)
 values
 ('MGL10290', 'MicroGard Oil Filter', 4.99, 'https://images.oreillyauto.com/parts/img/large/mgd/mgl10290.jpg'),
@@ -22,3 +21,7 @@ values
 ('M1-102A', 'Mobil 1 Oil Filter', 14.99, 'https://images.oreillyauto.com/parts/img/large/mob/m1-102a_p04_fro.jpg'),
 ('MGL57047', 'MicroGard Oil Filter', 6.99, 'https://images.oreillyauto.com/parts/img/large/mgd/mgl57047.jpg'),
 ('M1C251A', 'Mobil 1 Oil Filter', 18.99, 'https://images.oreillyauto.com/parts/img/large/mob/m1c-251a_p04_fro.jpg'),
+('MGL57041', 'MicroGard Oil Filter', 6.99, 'https://images.oreillyauto.com/parts/img/large/mgd/mgl57041.jpg'),
+('M1C453A', 'Mobil 1 Oil Filter', 19.99, 'https://images.oreillyauto.com/parts/img/large/mob/m1c-453a_p04_fro.jpg'),
+
+
