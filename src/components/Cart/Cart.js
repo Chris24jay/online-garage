@@ -6,6 +6,7 @@ class Cart extends Component {
 
         this.state={
             userid: null,
+            cart: []
         }
     }
 

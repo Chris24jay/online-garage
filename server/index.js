@@ -17,10 +17,12 @@ app.use(bodyParer.json())
 app.use(sessions({
     secret: SESSION_SECRET,
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
 }))
 
 //endpoints
+app.post(`/auth/register`, ctrl.register);
+app.post(`/auth/login`, ctrl.login);
 
 //server port listening
 app.listen(SERVER_PORT, () => console.log(`Firing up at port: ${SERVER_PORT}`))
