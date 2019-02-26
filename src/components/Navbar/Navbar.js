@@ -1,12 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import Button from 'react-bootstrap/Button'
 
 export default function Navbar(){
-    return <div>
-        <Link to='/cart'>Cart </Link>
+    return <ButtonGroup>
+        <Button><Link to='/'>Logout </Link></Button>
+        <Button><Link to='/cart'>Cart </Link></Button>
+        <Button><Link to='/parts'>Parts </Link></Button>
         <Link to='/garage'>Garage </Link>
-        <Link to='/parts'>Parts </Link>
-        <Link to='/'>Logout </Link>
         {/* <Link to='/about'>About</Link> */}
-    </div>
+    </ButtonGroup>
 }

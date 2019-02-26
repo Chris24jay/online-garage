@@ -11,15 +11,19 @@ class Parts extends Component {
         }
     }
 
-    //methods
-    // componentDidMount(){
-    //     axios.get(`/api/parts`)
-    // }
+    // methods
+    // refer to react-3-mini to display parts and axios request
+    componentDidMount(){
+        console.log('hit2')
+        axios.get(`/api/parts`)
+        .then(res => {this.setState({parts: res.data})})
+    }
 
     //end of methods
     render(){
+        const {parts} = this.state
         return(
-            <div>Parts component </div>
+            <div>Parts component {parts} </div>
         )
     }
 }

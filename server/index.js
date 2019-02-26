@@ -23,6 +23,10 @@ app.use(sessions({
 //endpoints
 app.post(`/auth/register`, ctrl.register);
 app.post(`/auth/login`, ctrl.login);
+app.post(`/auth/logout`, ctrl.logout);
+
+
+app.get(`/api/parts`, ctrl.getParts);
 
 //server port listening
 app.listen(SERVER_PORT, () => console.log(`Firing up at port: ${SERVER_PORT}`))
