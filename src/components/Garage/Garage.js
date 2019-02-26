@@ -18,6 +18,7 @@ class Garage extends Component {
         return(
             <div>
                 User Garage component
+                
                 <Link to='/parts' >Browse Parts</Link>
             </div>
         )

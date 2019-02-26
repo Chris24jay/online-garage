@@ -1,5 +1,5 @@
-insert into users (username, password )
-values (
+insert into users (username, password)
+values(
     ${username},
-    ${password},
-)
+    ${password}
+);

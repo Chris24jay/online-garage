@@ -1,29 +1,43 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios'
+import '../Parts/Parts.css'
 
 
 class Parts extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
-        this.state={
+        this.state = {
             parts: [],
         }
     }
 
     // methods
     // refer to react-3-mini to display parts and axios request
-    componentDidMount(){
-        console.log('hit2')
-        axios.get(`/api/parts`)
-        .then(res => {this.setState({parts: res.data})})
+    componentDidMount() {
+        axios.get('/api/parts')
+            .then(res => { this.setState({ parts: res.data }) })
     }
 
     //end of methods
-    render(){
-        const {parts} = this.state
-        return(
-            <div>Parts component {parts} </div>
+    render() {
+        const { parts } = this.state
+        let displayParts = parts.map((val, ind) => {
+            return (
+                <div key={ind}  >
+                    <div>{val.parts_id}</div>
+                    <div>{val.part_name}</div>
+                    <div>{val.price}</div>
+                    <div><button>add</button></div>
+                </div>
+            )
+        })
+
+        return (
+            <div class="parts-display" >
+                {displayParts}
+            </div>
+
         )
     }
 }

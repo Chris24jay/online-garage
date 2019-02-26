@@ -1,5 +1,7 @@
 create table if not exists garage (
-    garage_id integer primary key,
+    garage_id serial primary key,
     vehicle_id integer, 
-    foreign key (vehicle_id) referneces vehicles(vehicle_id)
-)
+    user_id integer,
+    foreign key (vehicle_id) references vehicles(vehicle_id),
+    foreign key (user_id) references users(user_id)
+);

@@ -55,12 +55,14 @@ class Login extends Component {
     register = () => {
         const {username, password} = this.state
         console.log('hit')
+
         axios.post('/auth/register', {username, password})
         .then(res=>{
             console.log(res.data)
             // this.props.updateUser(res.data)
             this.props.history.push(`/garage`)
         })
+        .catch(err =>{console.log(err)})
     }
 
     //end of methods

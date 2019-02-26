@@ -25,17 +25,22 @@ module.exports={
     register: async (req, res) => {
         //create user information in sql.
         //garage_id, cart_id, user_id will auto increment per user registration
-        const{username, password} = req.body
+        console.log(req.body)
+        const {username, password} = req.body
         const db = req.app.get('db')
         const{session} = req; 
         const salt = brcrypt.genSaltSync(10);
         const hash = brcrypt.hashSync(password, salt);
+        
+        try{
+            let newUser = await db.register({username: username, password: hash})
+            newUser = newUser[0]
+    
+            session.user = {...newUser};
+            res.status(201).send(session.user)
 
-        let newUser = await db.register({username: username, password: hash})
-        newUser = newUser[0]
-
-        session.user = {...newUser};
-        res.status(201).send(session.user)
+        }
+        catch(error){console.log(error)}
     },
 
     logout: (req,res) => {
@@ -43,12 +48,10 @@ module.exports={
         res.sendStatus(200)
     }, 
 
-    getParts: async (req, res) => {
+    getParts: (req, res) => {
         const db = req.app.get('db')
-        let partsDisplay = await db.partsDisplay()
 
-        partsDisplay
-        .then(products => res.status(200).send(products))
-        .catch(err => {res.status(500).send('No go, something went wrong'); console.log(err) })
+        db.partsDisplay().then(products => res.status(200).send(products))
+        .catch(err => {res.status(500).send('No go, something went wrong'); console.log(err)})
     }
 }
