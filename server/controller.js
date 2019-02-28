@@ -1,6 +1,7 @@
 const brcrypt = require('bcryptjs')
 
 module.exports={
+    //auth stuff
     login: async (req, res) => {
         //get user information @ user_id
         const db = req.app.get('db')
@@ -48,10 +49,28 @@ module.exports={
         res.sendStatus(200)
     }, 
 
+    //parts display
     getParts: (req, res) => {
         const db = req.app.get('db')
 
         db.partsDisplay().then(products => res.status(200).send(products))
         .catch(err => {res.status(500).send('No go, something went wrong'); console.log(err)})
-    }
+    },
+
+    //for the garage
+    displayVehicles: (req, res) => {
+        const db = req.app.get('db')
+
+        db.garage.getAllVehicles().then(vehicles => res.status(200).send(vehicles))
+        .catch(err => {res.status(500).send('error')})
+    },
+
+    addToGarage: (req, res) => {
+        //add vehicle to vehicle table
+
+        const db= req.app.get('db')
+
+        db.garage.vehicleReg().then()
+        .catch(err => {res.status(500).send('error')})
+    },
 }

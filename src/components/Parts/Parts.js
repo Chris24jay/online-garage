@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Cart from '../Cart/Cart';
 import axios from 'axios'
 import '../Parts/Parts.css'
 
@@ -9,14 +10,19 @@ class Parts extends Component {
 
         this.state = {
             parts: [],
+            shoppingCart: ['stuff', 'stuff 2'], 
         }
     }
 
     // methods
-    // refer to react-3-mini to display parts and axios request
     componentDidMount() {
         axios.get('/api/parts')
             .then(res => { this.setState({ parts: res.data }) })
+    }
+
+    handleAddButton = () => {
+        console.log(this.state.parts)
+        console.log('add')
     }
 
     //end of methods
@@ -24,11 +30,12 @@ class Parts extends Component {
         const { parts } = this.state
         let displayParts = parts.map((val, ind) => {
             return (
-                <div key={ind}  >
+                <div key={ind} >
+                    <img src={val.image} alt='' />
                     <div>{val.parts_id}</div>
                     <div>{val.part_name}</div>
                     <div>{val.price}</div>
-                    <div><button>add</button></div>
+                    <div><button onClick={this.handleAddButton} >add</button></div>
                 </div>
             )
         })
@@ -36,6 +43,7 @@ class Parts extends Component {
         return (
             <div class="parts-display" >
                 {displayParts}
+                <Cart shoppingCart = {this.state.shoppingCart} />
             </div>
 
         )

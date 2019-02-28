@@ -5,9 +5,11 @@ import { Provider } from 'react-redux'
 import store from './dux/store'
 import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
+// import Navbar2 from './components/Navbar/Navbar2'
 
 
 import './App.css';
+
 
 class App extends Component {
   render() {
@@ -16,6 +18,7 @@ class App extends Component {
         <Header />
         <Provider store={store}>
           <Navbar />
+          {/* {<Navbar2 />} */}
           <HashRouter>{routes}</HashRouter>
         </Provider>
       </div>

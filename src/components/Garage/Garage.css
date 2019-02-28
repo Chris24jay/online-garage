@@ -1,0 +1,6 @@
+.vehicle-display {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    row-gap: 10px;
+    background-color: lightgrey;
+}

@@ -1,5 +1,9 @@
 const initialState= {
-    username: ''
+    username: '',
+    garageId: [],
+    garage: [],
+    vehicles: [],
+    cart: [],
 }
 
 const UPDATE_USER = 'UPDATE_USER';

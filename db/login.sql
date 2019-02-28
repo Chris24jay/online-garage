@@ -1,2 +1,2 @@
-select * from users2
+select * from users
 where username =${user}

@@ -21,12 +21,19 @@ app.use(sessions({
 }))
 
 //endpoints
+//auth stuff
 app.post(`/auth/register`, ctrl.register);
 app.post(`/auth/login`, ctrl.login);
 app.post(`/auth/logout`, ctrl.logout);
 
-
+//parts display
 app.get(`/api/parts`, ctrl.getParts);
+
+//for the garage
+//get all the vehicles for the user to choose
+//post to user garage
+app.get(`/api/vehicles`, ctrl.displayVehicles)
+app.post(`/api/vehicles/add`, ctrl.addToGarage)
 
 //server port listening
 app.listen(SERVER_PORT, () => console.log(`Firing up at port: ${SERVER_PORT}`))

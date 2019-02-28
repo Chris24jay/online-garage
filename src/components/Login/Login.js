@@ -50,6 +50,9 @@ class Login extends Component {
             this.props.updateUser(res.data)
             this.props.history.push(`/garage`)
         })
+        .catch(err => {
+            console.log(err)
+        })
     }
 
     register = () => {

@@ -1,21 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+
 
 class Cart extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
 
-        this.state={
-            userid: null,
+        this.state = {
             cart: []
         }
     }
-
-    //methods
-    //end of methods
-    render(){
-        return(
-            <div>Cart
-             component </div>
+    render() {
+        const {cart} = this.state
+        console.log(cart)
+        return (
+            <div>
+                Cart
+                component
+            </div>
         )
     }
 }
