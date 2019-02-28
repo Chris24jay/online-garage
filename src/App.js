@@ -18,7 +18,6 @@ class App extends Component {
         <Header />
         <Provider store={store}>
           <Navbar />
-          {/* {<Navbar2 />} */}
           <HashRouter>{routes}</HashRouter>
         </Provider>
       </div>

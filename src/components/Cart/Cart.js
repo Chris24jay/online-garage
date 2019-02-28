@@ -13,9 +13,7 @@ class Cart extends Component {
         const {cart} = this.state
         console.log(cart)
         return (
-            <div>
-                Cart
-                component
+            <div>...
             </div>
         )
     }

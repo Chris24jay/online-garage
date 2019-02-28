@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Cart from '../Cart/Cart';
 import axios from 'axios'
 import '../Parts/Parts.css'
 
@@ -9,8 +8,7 @@ class Parts extends Component {
         super(props)
 
         this.state = {
-            parts: [],
-            shoppingCart: ['stuff', 'stuff 2'], 
+            parts: [], 
         }
     }
 
@@ -43,7 +41,7 @@ class Parts extends Component {
         return (
             <div class="parts-display" >
                 {displayParts}
-                <Cart shoppingCart = {this.state.shoppingCart} />
+                
             </div>
 
         )

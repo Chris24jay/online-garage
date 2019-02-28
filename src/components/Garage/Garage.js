@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import VehicleSelect from '../Modals/VehicleSelect';
+// import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updateUser } from './../../dux/reducer';
 import axios from 'axios';
 import '../Garage/Garage.css';
 
@@ -10,15 +13,34 @@ class Garage extends Component {
         super(props)
 
         this.state = {
-            garageId: [],
-            garage: [],
+            user: [],
             vehicles: [],
+            modalShow: false,
+            
         };
+    }
+
+    componentDidMount() {
+        const { id } = this.props;
+        if (!id) {
+            axios.get(`/api/user`)
+                .then(res => {
+                    this.props.updateUser(res.data)
+                })
+                .catch(err => {
+                    // this.props.history.push('/')
+                })
+        }
     }
 
     handleAddVehicle = () => {
         axios.get(`/api/vehicles`)
-            .then(res => { this.setState({ vehicles: res.data }) })
+            .then(res => {
+                this.setState({
+                    modalShow: true,
+                    vehicles: res.data,
+                })
+            })
     }
 
     handleAddButton = () => {
@@ -30,32 +52,38 @@ class Garage extends Component {
     //methods
     //end of methods
     render() {
-        const { vehicles } = this.state
-
-        let displayVehicles = vehicles.map((val, ind) => {
-            return (
-                <div key={ind} >
-                    <div>{val.year}</div>
-                    <div>{val.make}</div>
-                    <div>{val.model}</div>
-                    <div><button onClick={this.handleAddButton} >add</button></div>
-                </div>
-            )
-        })
+        let modalClose = () => this.setState({ modalShow: false });
 
         return (
             <div>
                 <button onClick={this.handleAddVehicle}>
                     Add Vehicle
                 </button>
-                <div class="vehicle-display" >
+                {/* <div class="vehicle-display" >
                     {displayVehicles}
-                </div>
+                </div> */}
+                <VehicleSelect
+                    show={this.state.modalShow}
+                    onHide={modalClose}
+                    getVehicles = {this.state.vehicles}
+                />
 
-                <Link to='/parts' >Browse Parts</Link>
+                {/* <Link to='/parts' >Browse Parts</Link> */}
             </div>
         )
     }
 }
 
-export default Garage;
+const mapToProps = reduxState => {
+    const { id, username } = reduxState;
+    return {
+        id,
+        username,
+    }
+}
+
+const dispatch = {
+    updateUser
+}
+
+export default connect(mapToProps, dispatch)(Garage);
