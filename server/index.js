@@ -13,6 +13,7 @@ massive(DB_CONNECTION).then(db => {
 })
 
 //middleware
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParer.json())
 app.use(sessions({
     secret: SESSION_SECRET,
