@@ -26,7 +26,8 @@ module.exports={
     register: async (req, res) => {
         //create user information in sql.
         //garage_id, cart_id, user_id will auto increment per user registration
-        console.log(req.body)
+
+        console.log('this is the req.body',req.body) 
         const {username, password} = req.body
         const db = req.app.get('db')
         const{session} = req; 
@@ -47,6 +48,17 @@ module.exports={
     logout: (req,res) => {
         req.session.destroy()
         res.sendStatus(200)
+    },
+
+    getUser: (req,res) => {
+        const{user} =req.session
+        // const db = req.app.get('db')
+            
+        if(user){
+            res.status(200).send(user);
+        } else {
+            res.sendStatus(401);
+        }
     }, 
 
     //parts display
@@ -73,4 +85,12 @@ module.exports={
         db.garage.vehicleReg().then()
         .catch(err => {res.status(500).send('error')})
     },
+
+    //cart stuff
+    createCart: (req,res) => {
+        const db = req.app.get('db')
+
+        db.createCart()
+
+    }
 }

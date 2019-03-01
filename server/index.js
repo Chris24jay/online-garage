@@ -26,6 +26,7 @@ app.use(sessions({
 app.post(`/auth/register`, ctrl.register);
 app.post(`/auth/login`, ctrl.login);
 app.post(`/auth/logout`, ctrl.logout);
+app.get(`/api/user`, ctrl.getUser);
 
 //parts display
 app.get(`/api/parts`, ctrl.getParts);

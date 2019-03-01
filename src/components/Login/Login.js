@@ -47,6 +47,7 @@ class Login extends Component {
         const {username, password} = this.state
         axios.post(`/auth/login`, {username, password})
         .then(res => {
+            console.log('this is the res.data on login',res.data)
             this.props.updateUser(res.data)
             this.props.history.push(`/garage`)
         })
@@ -57,12 +58,12 @@ class Login extends Component {
 
     register = () => {
         const {username, password} = this.state
-        console.log('hit')
+        console.log('register hit')
 
         axios.post('/auth/register', {username, password})
         .then(res=>{
-            console.log(res.data)
-            // this.props.updateUser(res.data)
+            console.log('this is the res.data on register',res.data)
+            this.props.updateUser(res.data)
             this.props.history.push(`/garage`)
         })
         .catch(err =>{console.log(err)})

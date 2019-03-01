@@ -16,7 +16,6 @@ class Garage extends Component {
             user: [],
             vehicles: [],
             modalShow: false,
-            
         };
     }
 

@@ -8,7 +8,8 @@ class Parts extends Component {
         super(props)
 
         this.state = {
-            parts: [], 
+            parts: [],
+            cart: [],  
         }
     }
 
@@ -19,6 +20,9 @@ class Parts extends Component {
     }
 
     handleAddButton = () => {
+        //loop through the array
+        //find the item at the index that the user clicked on
+        //app.post request to db
         console.log(this.state.parts)
         console.log('add')
     }
@@ -33,7 +37,7 @@ class Parts extends Component {
                     <div>{val.parts_id}</div>
                     <div>{val.part_name}</div>
                     <div>{val.price}</div>
-                    <div><button onClick={this.handleAddButton} >add</button></div>
+                    <div><button onClick={this.handleAddButton()} >add</button></div>
                 </div>
             )
         })

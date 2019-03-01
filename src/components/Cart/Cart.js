@@ -9,9 +9,9 @@ class Cart extends Component {
             cart: []
         }
     }
+    
+
     render() {
-        const {cart} = this.state
-        console.log(cart)
         return (
             <div>...
             </div>
