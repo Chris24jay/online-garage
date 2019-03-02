@@ -23,31 +23,30 @@ class Login extends Component {
         })
     }
 
-    // componentDidMount(){
-    //     const {id} = this.props;
-    //     if(id) {
-    //         //boot to other page
-    //         this.props.history.push(`/private`)
-    //     } else {
-    //         //double check sessions
-    //         axios.get(`/api/user`)
-    //         .then(res => {
-    //             //boot to the other page
-    //             this.props.updateUser(res.data)
-    //             this.props.history.push('/private')
-    //         })
-    //         .catch(err => {
-    //             //don't move
-    //         })
-    //     }
-    // }
+    componentDidMount(){
+        const {id} = this.props;
+        if(id) {
+            //boot to other page
+            this.props.history.push(`/private`)
+        } else {
+            //double check sessions
+            axios.get(`/api/user`)
+            .then(res => {
+                //boot to the other page
+                this.props.updateUser(res.data)
+                this.props.history.push('/')
+            })
+            .catch(err => {
+                //don't move
+            })
+        }
+    }
 
     //add an 'if' statement to handle a button press without input
     login = () => {
         const {username, password} = this.state
         axios.post(`/auth/login`, {username, password})
         .then(res => {
-            console.log('this is the res.data on login',res.data)
             this.props.updateUser(res.data)
             this.props.history.push(`/garage`)
         })

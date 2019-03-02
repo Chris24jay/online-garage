@@ -17,6 +17,11 @@ module.exports={
         if(foundUser){
             delete user.password
             session.user = user; 
+
+            let newOrder = await db.orders.selectOrderId({user_id: user.user_id, checkout: false})
+            session.user ={...user, newOrder}            
+
+            console.log('this is the session.user:',session.user)
             res.status(200).send(session.user);
         } else {
             res.status(401).send('no match')
@@ -24,10 +29,8 @@ module.exports={
     },
     
     register: async (req, res) => {
-        //create user information in sql.
-        //garage_id, cart_id, user_id will auto increment per user registration
 
-        console.log('this is the req.body',req.body) 
+        
         const {username, password} = req.body
         const db = req.app.get('db')
         const{session} = req; 
@@ -35,10 +38,22 @@ module.exports={
         const hash = brcrypt.hashSync(password, salt);
         
         try{
-            let newUser = await db.register({username: username, password: hash})
+            let newUser = await db.register(
+                {
+                    username: username, 
+                    password: hash, 
+                }
+            )
+            
             newUser = newUser[0]
-    
-            session.user = {...newUser};
+
+            let newOrder = await db.orders.createOrders(
+                {
+                    user_id: newUser.user_id,
+                    checkout: false
+                }
+            )
+            session.user = {...newUser, newOrder};
             res.status(201).send(session.user)
 
         }
@@ -52,7 +67,7 @@ module.exports={
 
     getUser: (req,res) => {
         const{user} =req.session
-        // const db = req.app.get('db')
+        
             
         if(user){
             res.status(200).send(user);
@@ -74,23 +89,29 @@ module.exports={
         const db = req.app.get('db')
 
         db.garage.getAllVehicles().then(vehicles => res.status(200).send(vehicles))
-        .catch(err => {res.status(500).send('error')})
+        .catch(err => {res.status(500).send(err)})
     },
 
-    addToGarage: (req, res) => {
-        //add vehicle to vehicle table
-
-        const db= req.app.get('db')
-
+    addToGarge: (req,res) => {
+        
         db.garage.vehicleReg().then()
         .catch(err => {res.status(500).send('error')})
     },
 
-    //cart stuff
-    createCart: (req,res) => {
+    //orders stuff
+    addToOrder: (req,res) => {
+        const {id, price} = req.body
+        console.log(req.body)
         const db = req.app.get('db')
+        const {newOrder} = req.session.user
 
-        db.createCart()
-
+        db.createCart({
+            order_id: newOrder.order_id,
+            part_id: id,
+            quantity: 1,
+            total_price: price, 
+        })
+        .then(res.status(200))
+        .catch(err => {res.status(500).send(err)})
     }
 }

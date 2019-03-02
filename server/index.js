@@ -23,6 +23,7 @@ app.use(sessions({
 
 //endpoints
 //auth stuff
+//register also creates an orders row for the user
 app.post(`/auth/register`, ctrl.register);
 app.post(`/auth/login`, ctrl.login);
 app.post(`/auth/logout`, ctrl.logout);
@@ -35,7 +36,10 @@ app.get(`/api/parts`, ctrl.getParts);
 //get all the vehicles for the user to choose
 //post to user garage
 app.get(`/api/vehicles`, ctrl.displayVehicles)
-app.post(`/api/vehicles/add`, ctrl.addToGarage)
+app.post(`/api/vehicles/add`)
+
+//orders
+app.post(`/api/orders`)
 
 //server port listening
 app.listen(SERVER_PORT, () => console.log(`Firing up at port: ${SERVER_PORT}`))

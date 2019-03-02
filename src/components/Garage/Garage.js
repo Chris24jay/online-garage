@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import VehicleSelect from '../Modals/VehicleSelect';
-// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateUser } from './../../dux/reducer';
 import axios from 'axios';
@@ -13,7 +12,6 @@ class Garage extends Component {
         super(props)
 
         this.state = {
-            user: [],
             vehicles: [],
             modalShow: false,
         };
@@ -58,9 +56,7 @@ class Garage extends Component {
                 <button onClick={this.handleAddVehicle}>
                     Add Vehicle
                 </button>
-                {/* <div class="vehicle-display" >
-                    {displayVehicles}
-                </div> */}
+    
                 <VehicleSelect
                     show={this.state.modalShow}
                     onHide={modalClose}

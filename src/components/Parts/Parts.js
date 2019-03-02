@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import { connect } from 'react-redux';
+// import { updateUser } from './../../dux/reducer';
 import axios from 'axios'
 import '../Parts/Parts.css'
 
@@ -9,7 +11,7 @@ class Parts extends Component {
 
         this.state = {
             parts: [],
-            cart: [],  
+            cart: [], 
         }
     }
 
@@ -19,35 +21,32 @@ class Parts extends Component {
             .then(res => { this.setState({ parts: res.data }) })
     }
 
-    handleAddButton = () => {
-        //loop through the array
-        //find the item at the index that the user clicked on
-        //app.post request to db
-        console.log(this.state.parts)
-        console.log('add')
+    handleAddButton = (ind) => {
+        const {parts} = this.state
+        let part = parts[ind]
+
+        axios.post(`/api/orders`, {part})
+        .then(res=> {this.setState({cart: res.data})})
     }
 
     //end of methods
     render() {
-        const { parts } = this.state
+        const {parts} = this.state
         let displayParts = parts.map((val, ind) => {
             return (
-                <div key={ind} >
-                    <img src={val.image} alt='' />
+                <div key={ind}>
                     <div>{val.parts_id}</div>
                     <div>{val.part_name}</div>
                     <div>{val.price}</div>
-                    <div><button onClick={this.handleAddButton()} >add</button></div>
+                    <div><button onClick={()=>this.handleAddButton(ind)} >add</button></div>
                 </div>
             )
         })
 
         return (
-            <div class="parts-display" >
-                {displayParts}
-                
+            <div class="parts-display">
+                {displayParts}                
             </div>
-
         )
     }
 }

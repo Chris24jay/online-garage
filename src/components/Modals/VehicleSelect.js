@@ -20,7 +20,7 @@ class VehicleSelect extends React.Component {
             <Modal {...this.props} aria-labelledby="contained-modal-title-vcenter">
               <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                  Using Grid in Modal
+                  Pick a car
                 </Modal.Title>
               </Modal.Header>
               <Modal.Body >
