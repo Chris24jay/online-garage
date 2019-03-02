@@ -9,11 +9,13 @@ class Cart extends Component {
             cart: []
         }
     }
+
+    
     
 
     render() {
         return (
-            <div>...
+            <div>Here is the cart
             </div>
         )
     }

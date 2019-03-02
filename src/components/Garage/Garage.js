@@ -19,6 +19,7 @@ class Garage extends Component {
 
     componentDidMount() {
         const { id } = this.props;
+        console.log('this is the userid:', id)
         if (!id) {
             axios.get(`/api/user`)
                 .then(res => {

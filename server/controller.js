@@ -96,19 +96,28 @@ module.exports={
 
     //orders stuff
     addToOrder: (req,res) => {
-        const {id, price} = req.body
-        console.log(req.body)
+        const {id, price} = req.body.part
+        console.log('this is req.body:', req.body)
         const db = req.app.get('db')
         console.log('this is the req.session.user', req.session.user)
         const {newOrder} = req.session.user
-
+        let intPrice = parseFloat(price)
+        console.log(intPrice)
+        
         db.orders.addToOrderItems({
             order_id: newOrder[0].order_id,    
             part_id: id,
             quantity: 1,
-            total_price: price, 
-        })
+            total_price: intPrice, 
+        })        
         .then(res.status(200))
         .catch(err => {res.status(500).send(err)})
+    },
+
+    getUserCart: (req, res) => {
+        console.log('this is the current userId:', req.session.user.user_id)
+        const db = req.app.get('db')
+        const {user_id} = req.session.user
+
     }
 }
