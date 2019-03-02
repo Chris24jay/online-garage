@@ -3,9 +3,8 @@ const brcrypt = require('bcryptjs')
 module.exports={
     //auth stuff
     login: async (req, res) => {
-        //get user information @ user_id
-        const db = req.app.get('db')
         const{username, password} = req.body
+        const db = req.app.get('db')
         const {session} =req;
         let user = await db.login({user: username})
         user = user[0];
@@ -21,16 +20,13 @@ module.exports={
             let newOrder = await db.orders.selectOrderId({user_id: user.user_id, checkout: false})
             session.user ={...user, newOrder}            
 
-            console.log('this is the session.user:',session.user)
             res.status(200).send(session.user);
         } else {
             res.status(401).send('no match')
         }
     },
     
-    register: async (req, res) => {
-
-        
+    register: async (req, res) => {        
         const {username, password} = req.body
         const db = req.app.get('db')
         const{session} = req; 
@@ -103,10 +99,11 @@ module.exports={
         const {id, price} = req.body
         console.log(req.body)
         const db = req.app.get('db')
+        console.log('this is the req.session.user', req.session.user)
         const {newOrder} = req.session.user
 
-        db.createCart({
-            order_id: newOrder.order_id,
+        db.orders.addToOrderItems({
+            order_id: newOrder[0].order_id,    
             part_id: id,
             quantity: 1,
             total_price: price, 

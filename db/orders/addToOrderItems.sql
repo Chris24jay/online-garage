@@ -4,4 +4,5 @@ values(
     ${part_id},
     ${quantity},
     ${total_price}
-);
+)
+returning *;
