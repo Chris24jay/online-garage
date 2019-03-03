@@ -17,6 +17,13 @@ class Cart extends Component {
         .then(res => {this.setState({cart:res.data})})
     }
 
+    handleDelete = (id) => {
+        console.log('delete button hit')
+        axios.delete(`/api/orders/usercart/delete/${id}`)
+        .then(res => {this.setState({cart: res.data})})
+    }
+
+
     
     
 
@@ -32,7 +39,7 @@ class Cart extends Component {
                     <div>{val.quantity}</div>
                     <div>{val.total_price}</div>
                     <div><button>Edit</button></div>
-                    <div><button>Delete</button></div>                    
+                    <div><button onClick={()=> this.handleDelete(val.id)} >Delete</button></div>                    
                 </div>
             )
         })

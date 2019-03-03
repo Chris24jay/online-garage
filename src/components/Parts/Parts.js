@@ -27,6 +27,7 @@ class Parts extends Component {
 
         axios.post(`/api/orders`, {part})
         .then(res=> {this.setState({cart: res.data})})
+        // ^^^I think I'm not displaying this anywhere on the site. Not being rendered. 
     }
 
     //end of methods

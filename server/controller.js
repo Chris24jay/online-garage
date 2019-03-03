@@ -128,5 +128,17 @@ module.exports={
         .then(cart => res.status(200).send(cart))
         .catch(err => {res.status(500).send('Could not get cart'); console.log(err)})
 
+    },
+
+    deleteCartItem: (req, res) => {
+        console.log('this is the req.params:', req.params.id)
+        const {id} = req.params
+        const db = req.app.get('db')
+
+        db.orders.deleteItem({
+            id: id,
+        })
+        .then(cart => res.status(200).send(cart))
+        .catch(err => {res.status(500).send('Could not delete'); console.log(err)})        
     }
 }
