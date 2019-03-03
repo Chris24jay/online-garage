@@ -40,6 +40,7 @@ app.post(`/api/vehicles/add`)
 
 //orders
 app.post(`/api/orders`, ctrl.addToOrder)
+app.get(`/api/orders/usercart`, ctrl.getUserCart)
 
 //server port listening
 app.listen(SERVER_PORT, () => console.log(`Firing up at port: ${SERVER_PORT}`))

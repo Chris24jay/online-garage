@@ -94,7 +94,7 @@ module.exports={
         .catch(err => {res.status(500).send('error')})
     },
 
-    //orders stuff
+    //user orders
     addToOrder: (req,res) => {
         const {id, price} = req.body.part
         console.log('this is req.body:', req.body)
@@ -115,9 +115,18 @@ module.exports={
     },
 
     getUserCart: (req, res) => {
-        console.log('this is the current userId:', req.session.user.user_id)
+        
+        console.log('this is the current userId:', req.session)
         const db = req.app.get('db')
-        const {user_id} = req.session.user
+        const {newOrder} = req.session.user
+        
+        console.log(newOrder)
+
+        db.orders.getUserCart({
+            order_id: newOrder[0].order_id,
+        })
+        .then(cart => res.status(200).send(cart))
+        .catch(err => {res.status(500).send('Could not get cart'); console.log(err)})
 
     }
 }

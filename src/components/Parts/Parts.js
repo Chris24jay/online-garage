@@ -35,8 +35,8 @@ class Parts extends Component {
         let displayParts = parts.map((val, ind) => {
             return (
                 <div key={ind}>
-                    <div>{val.parts_id}</div>
                     <div>{val.part_name}</div>
+                    <div>{val.parts_id}</div>
                     <div>{val.price}</div>
                     <div><button onClick={()=>this.handleAddButton(ind)} >add</button></div>
                 </div>
