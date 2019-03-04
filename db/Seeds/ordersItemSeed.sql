@@ -3,7 +3,8 @@ create table if not exists orderItems (
     order_id integer,
     part_id integer, 
     quantity integer, 
-    total_price decimal, 
+    total_price decimal,
+    -- checkout_price decimal, 
     foreign key (order_id) references orders(order_id),
-    foreign key (part_id) references parts(id)
+    foreign key (part_id) references parts(id),
 );

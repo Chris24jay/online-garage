@@ -140,5 +140,14 @@ module.exports={
         })
         .then(cart => res.status(200).send(cart))
         .catch(err => {res.status(500).send('Could not delete'); console.log(err)})        
+    },
+
+    updateCart: async (req, res) => {
+        const db = req.app.get('db')
+        const {id, quantity} = req.body
+        
+        const updateCart = await db.orders.updateCart([id, quantity])
+
+        res.sendStatus(200)
     }
 }
