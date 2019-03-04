@@ -12,6 +12,7 @@ const UPDATE_USER = 'UPDATE_USER';
 
 //action builders
 export function updateUser(userObj){
+    console.log('this is the updateUser action builder', userObj)
     return{
         type: UPDATE_USER,
         payload: userObj
@@ -22,8 +23,8 @@ export default function reducer(state=initialState, action) {
     const{type, payload} = action; 
     switch(type) {
         case UPDATE_USER:
-            const {id, username} = payload
-            return{...state, id, username}
+            const {user_id, username} = payload
+            return{...state, id: user_id, username}
         default: 
         return state; 
     }
