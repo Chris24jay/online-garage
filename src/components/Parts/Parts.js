@@ -46,6 +46,7 @@ class Parts extends Component {
 
         return (
             <div class="parts-display">
+                <h3>Look at all those parts!</h3>
                 {displayParts}                
             </div>
         )
